@@ -1,3 +1,4 @@
+from ftplib import FTP
 import wx
 
 

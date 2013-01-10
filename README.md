@@ -13,3 +13,6 @@ Log into ssh server, run perl script.
 
 
 # TODO
+
+## Load settings from config file.
+## Make some kind of log window.

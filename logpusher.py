@@ -66,6 +66,26 @@ class MainWindow(wx.Frame):
 	
 	def OnLoadConfig(self, e):
 		print "Loading conifg."
+		parser = SafeConfigParser()
+		filename = parser.read('logpusher.ini')
+		section_name = 'logpusher'
+	
+		if filename == []:
+			# file could not be loaded
+			# TODO: Add some exception handling here.
+			print "Config file not found"
+			# Just returning nothing now...
+			return
+		if section_name in parser.sections():
+			# load some stuff
+			if 'user' in parser.options(section_name):
+				self.user = parser.get(section_name, 'user')
+			else:
+				print 'User not found'
+		else:
+			print 'logpusher section not found.'
+			# TODO: More error checking.
+			
 	
 	def OnAbout(self, e):
 		dlg = wx.MessageDialog(self, "A small text editor", "About Sample Editor")
@@ -82,7 +102,3 @@ if __name__ == '__main__':
 	frame = MainWindow(None, "Sample Editor")
 	app.MainLoop()
 
-	print "logpusher\n"
-	loadconfig()
-	print rot13('b@alk#$%^')
-	print rot13('onyx')
